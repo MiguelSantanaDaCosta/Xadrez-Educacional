@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xadrez Educativo Digital - Lar Batista</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--secondary);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--secondary);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+            width: 50%;
+            padding: 0 2rem;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--secondary);
+            top: 10px;
+        }
+        
+        .timeline-item:nth-child(odd):before {
+            right: -8px;
+        }
+        
+        .timeline-item:nth-child(even):before {
+            left: -8px;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 1rem;
+            min-width: 150px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline:before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:before {
+                left: 12px !important;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Xadrez Educativo Digital</h1>
+            </div>
+            <p class="subtitle">Lar Batista - Projeto de Extensão Universitária</p>
+            <p>Desenvolvimento cognitivo através do xadrez para crianças e adolescentes</p>
+            <div style="margin-top: 1.5rem;">
+                <a href="#sobre" class="btn">Saiba Mais</a>
+                <a href="#contato" class="btn btn-outline">Entre em Contato</a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="sobre">
+        <div class="container">
+            <h2>Sobre o Projeto</h2>
+            <div class="card">
+                <p>O projeto consiste no desenvolvimento e implementação de uma ferramenta digital lúdica e interativa para o ensino de xadrez, voltada a crianças e adolescentes no Lar Batista, em Mogi das Cruzes.</p>
+                <p>Nosso objetivo é promover o desenvolvimento cognitivo e lógico de jovens por meio do aprendizado de xadrez, estimulando o raciocínio lógico, a concentração e a tomada de decisão.</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Funciona Offline</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">6-14</span>
+                    <span class="stat-label">Faixa Etária</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2GB</span>
+                    <span class="stat-label">RAM Mínima</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Custo para Instituição</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: var(--light);">
+        <div class="container">
+            <h2>Funcionalidades</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Interface Adaptada</h3>
+                    <ul class="feature-list">
+                        <li>Pouco ou nenhum texto</li>
+                        <li>Navegação apenas com mouse</li>
+                        <li>Ícones intuitivos</li>
+                        <li>Criança de 8 anos consegue usar sem instruções</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Conteúdo Educativo</h3>
+                    <ul class="feature-list">
+                        <li>Movimentação das peças</li>
+                        <li>Objetivos do jogo</li>
+                        <li>Xeque-mate básico</li>
+                        <li>Sistema de progressão</li>
+                        <li>Biblioteca de puzzles</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Tecnologia</h3>
+                    <ul class="feature-list">
+                        <li>Funciona offline</li>
+                        <li>Compatível com hardware antigo</li>
+                        <li>Baixo consumo de recursos</li>
+                        <li>Interface responsiva</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2>Cronograma do Projeto</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Mês 1</div>
+                    <div class="card">
+                        <h3>Pesquisa e Imersão</h3>
+                        <p>Diagnóstico participativo com 80% das crianças e educadores, análise da infraestrutura técnica e documentação de requisitos.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Mês 2</div>
+                    <div class="card">
+                        <h3>Design e Desenvolvimento</h3>
+                        <p>Criação do protótipo navegável com 100% dos módulos básicos, design de interface e desenvolvimento do MVP.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Mês 3</div>
+                    <div class="card">
+                        <h3>Testes e Validação</h3>
+                        <p>Testes de usabilidade com crianças e educadores, correção de defeitos e validação com stakeholders.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Final do Semestre</div>
+                    <div class="card">
+                        <h3>Implantação</h3>
+                        <p>Instalação nos equipamentos do orfanato, capacitação dos educadores e início do uso regular.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section style="background-color: var(--light);">
+        <div class="container">
+            <h2>Equipe</h2>
+            <div class="grid">
+                <div class="team-member">
+                    <div class="card">
+                        <h3>Felipe Seiji Namiyama Nishina</h3>
+                        <p>Gerente do Projeto</p>
+                        <p>11231103739</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="card">
+                        <h3>Avraham Ben Aram de Souza</h3>
+                        <p>Desenvolvedor</p>
+                        <p>11231103362</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="card">
+                        <h3>Gabriel Yukio Yamaguti Minato</h3>
+                        <p>Desenvolvedor</p>
+                        <p>11231100828</p>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="card">
+                        <h3>Miguel Santana da Costa</h3>
+                        <p>Desenvolvedor</p>
+                        <p>11232100858</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contato">
+        <div class="container">
+            <h2>Contato</h2>
+            <div class="card">
+                <p>Este projeto é uma iniciativa da Universidade de Mogi das Cruzes em parceria com o Lar Batista.</p>
+                <p>Para mais informações sobre o projeto ou possíveis parcerias, entre em contato conosco.</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="mailto:contato@exemplo.com" class="btn">Enviar E-mail</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>Xadrez Educativo Digital - Lar Batista</p>
+            <p>Projeto de Engenharia de Software - Universidade de Mogi das Cruzes</p>
+            <p>2025</p>
+        </div>
+    </footer>
+</body>
+</html>
