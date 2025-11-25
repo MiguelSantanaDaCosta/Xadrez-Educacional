@@ -1,52 +1,61 @@
-# Xadrez Educacional Digital - Lar Batista
-
-## 📋 Sobre o Projeto
-
+Xadrez Educacional Digital - Lar Batista
+📋 Sobre o Projeto
 Projeto de extensão universitária desenvolvido para o Lar Batista em Mogi das Cruzes, com o objetivo de ensinar xadrez para crianças e adolescentes de forma lúdica e interativa através de uma plataforma digital.
 
-**🎯 Objetivo Principal:** Promover o desenvolvimento cognitivo e lógico de jovens em situação de acolhimento através do aprendizado de xadrez.
+🎯 Objetivo Principal: Promover o desenvolvimento cognitivo e lógico de jovens em situação de acolhimento através do aprendizado de xadrez.
 
-## ✨ Características do Projeto
+✨ Características do Projeto
+🎮 Interface Lúdica: Design adaptado para crianças de 6 a 14 anos
 
-- **🎮 Interface Lúdica**: Design adaptado para crianças de 6 a 14 anos
-- **📚 Conteúdo Educativo**: Lições progressivas sobre xadrez
-- **⚡ Funciona Offline**: Não requer conexão com internet
-- **💻 Baixo Consumo**: Compatível com hardware antigo (2GB RAM)
-- **🎨 Interface Simples**: Navegação apenas com mouse, poucos textos
-- **💰 Zero Custo**: Solução gratuita para a instituição
+📚 Conteúdo Educativo: Lições progressivas sobre xadrez
 
-## 🎓 Lições Disponíveis
+⚡ Funciona Offline: Não requer conexão com internet
 
-### 1. ♙ Conhecendo o Tabuleiro
-- Estrutura do tabuleiro (64 casas)
-- Coordenadas (A-H, 1-8)
-- Regra da casa clara no canto inferior direito
+💻 Baixo Consumo: Compatível com hardware antigo (2GB RAM)
 
-### 2. ♟️ Movimento dos Peões
-- Movimento para frente
-- Primeiro movimento (2 casas)
-- Captura na diagonal
+🎨 Interface Simples: Navegação apenas com mouse, poucos textos
 
-### 3. ♖ Torres e Bispos
-- Movimentos horizontais/verticais (Torres)
-- Movimentos diagonais (Bispos)
-- Alcance ilimitado
+💰 Zero Custo: Solução gratuita para a instituição
 
-### 4. ♘ Cavalos e Rainhas
-- Movimento em "L" (Cavalos)
-- Movimentos combinados (Rainhas)
-- Poder da rainha no jogo
+🎓 Lições Disponíveis
+1. ♙ Conhecendo o Tabuleiro
+Estrutura do tabuleiro (64 casas)
 
-### 5. ♔ Rei e Xeque-mate
-- Movimento do rei (1 casa)
-- Conceito de xeque
-- Xeque-mate e fim do jogo
+Coordenadas (A-H, 1-8)
 
-## 🚀 Como Executar o Projeto
+Regra da casa clara no canto inferior direito
 
-### Execução Local (Recomendado)
+2. ♟️ Movimento dos Peões
+Movimento para frente
 
-```bash
+Primeiro movimento (2 casas)
+
+Captura na diagonal
+
+3. ♖ Torres e Bispos
+Movimentos horizontais/verticais (Torres)
+
+Movimentos diagonais (Bispos)
+
+Alcance ilimitado
+
+4. ♘ Cavalos e Rainhas
+Movimento em "L" (Cavalos)
+
+Movimentos combinados (Rainhas)
+
+Poder da rainha no jogo
+
+5. ♔ Rei e Xeque-mate
+Movimento do rei (1 casa)
+
+Conceito de xeque
+
+Xeque-mate e fim do jogo
+
+🚀 Como Executar o Projeto
+Execução Local (Recomendado)
+bash
 # 1. Acesse o diretório do projeto
 cd xadrez_educacional
 
@@ -55,19 +64,6 @@ python -m http.server 8000
 
 # 3. Acesse no navegador
 # http://localhost:8000
-
-
-
-
-
-
-
-
-
-
-
-
-
 Alternativas de Servidor
 bash
 # Com Node.js
