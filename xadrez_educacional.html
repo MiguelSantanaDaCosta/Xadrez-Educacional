@@ -3,446 +3,545 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xadrez Educativo Digital - Lar Batista</title>
+    <title>Aprenda Xadrez - Xadrez Educacional</title>
     <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #2ecc71;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
         
         body {
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 2rem;
         }
         
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2rem 0;
+        .lesson-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .lesson-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
-        .logo {
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .lesson-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .lesson-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .chess-board {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: repeat(8, 1fr);
+            width: 400px;
+            height: 400px;
+            margin: 2rem auto;
+            border: 3px solid #333;
+        }
+        
+        .square {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 1rem;
+            font-size: 2rem;
         }
         
-        .logo img {
-            height: 60px;
-            margin-right: 15px;
+        .white {
+            background-color: #f0d9b5;
         }
         
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .black {
+            background-color: #b58863;
         }
         
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
+        .piece {
+            cursor: pointer;
+            user-select: none;
         }
         
-        section {
-            padding: 3rem 0;
+        .highlight {
+            background-color: #aec6cf !important;
         }
         
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--secondary);
-        }
-        
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .feature-list {
-            list-style-type: none;
-        }
-        
-        .feature-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .feature-list li:before {
-            content: "✓";
-            color: var(--success);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .team-member {
-            text-align: center;
-            padding: 1rem;
-        }
-        
-        .team-member img {
-            width: 100px;
-            height: 100px;
+        .movement-dot {
+            width: 20px;
+            height: 20px;
+            background-color: rgba(46, 204, 113, 0.6);
             border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1rem;
-            border: 3px solid var(--secondary);
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .timeline:before {
-            content: '';
             position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--secondary);
-            transform: translateX(-50%);
-        }
-        
-        .timeline-item {
-            margin-bottom: 2rem;
-            position: relative;
-            width: 50%;
-            padding: 0 2rem;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--secondary);
-            top: 10px;
-        }
-        
-        .timeline-item:nth-child(odd):before {
-            right: -8px;
-        }
-        
-        .timeline-item:nth-child(even):before {
-            left: -8px;
-        }
-        
-        .timeline-date {
-            font-weight: bold;
-            color: var(--secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
-        
-        .stat {
-            text-align: center;
-            padding: 1rem;
-            min-width: 150px;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--secondary);
-            display: block;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--dark);
-        }
-        
-        footer {
-            background-color: var(--primary);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
         }
         
         .btn {
-            display: inline-block;
-            background: var(--secondary);
+            background: #e74c3c;
             color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s ease;
-            margin: 0.5rem;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
         }
         
         .btn:hover {
-            background: #2980b9;
+            background: #c0392b;
         }
         
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--secondary);
+        .hidden {
+            display: none;
         }
         
-        .btn-outline:hover {
-            background: var(--secondary);
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
         }
         
-        @media (max-width: 768px) {
-            .timeline:before {
-                left: 20px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                left: 0 !important;
-                padding-left: 50px;
-                padding-right: 0;
-            }
-            
-            .timeline-item:before {
-                left: 12px !important;
-            }
-            
-            .grid {
-                grid-template-columns: 1fr;
-            }
+        .example-board {
+            width: 200px;
+            height: 200px;
+            margin: 1rem;
+        }
+        
+        .boards-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .instruction {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1>Xadrez Educativo Digital</h1>
-            </div>
-            <p class="subtitle">Lar Batista - Projeto de Extensão Universitária</p>
-            <p>Desenvolvimento cognitivo através do xadrez para crianças e adolescentes</p>
-            <div style="margin-top: 1.5rem;">
-                <a href="#sobre" class="btn">Saiba Mais</a>
-                <a href="#contato" class="btn btn-outline">Entre em Contato</a>
-            </div>
-        </div>
-    </header>
-    
-    <section id="sobre">
-        <div class="container">
-            <h2>Sobre o Projeto</h2>
-            <div class="card">
-                <p>O projeto consiste no desenvolvimento e implementação de uma ferramenta digital lúdica e interativa para o ensino de xadrez, voltada a crianças e adolescentes no Lar Batista, em Mogi das Cruzes.</p>
-                <p>Nosso objetivo é promover o desenvolvimento cognitivo e lógico de jovens por meio do aprendizado de xadrez, estimulando o raciocínio lógico, a concentração e a tomada de decisão.</p>
+    <div class="header">
+        <a href="index.html" class="back-btn">← Voltar</a>
+        <h1>🎯 Aprenda Xadrez</h1>
+        <p>Escolha uma lição para começar</p>
+    </div>
+
+    <div class="container">
+        <!-- Seletor de Lições -->
+        <div class="lesson-selector" id="lessonSelector">
+            <div class="lesson-card" onclick="startLesson(1)">
+                <div class="lesson-icon">♙</div>
+                <h3>Lição 1: Conhecendo o Tabuleiro</h3>
+                <p>Aprenda sobre as casas e coordenadas</p>
             </div>
             
-            <div class="stats">
-                <div class="stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Funciona Offline</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">6-14</span>
-                    <span class="stat-label">Faixa Etária</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">2GB</span>
-                    <span class="stat-label">RAM Mínima</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">0</span>
-                    <span class="stat-label">Custo para Instituição</span>
-                </div>
+            <div class="lesson-card" onclick="startLesson(2)">
+                <div class="lesson-icon">♟️</div>
+                <h3>Lição 2: Movimento dos Peões</h3>
+                <p>Como os peões se movem e capturam</p>
+            </div>
+            
+            <div class="lesson-card" onclick="startLesson(3)">
+                <div class="lesson-icon">♖</div>
+                <h3>Lição 3: Torres e Bispos</h3>
+                <p>Movimentos horizontais e diagonais</p>
+            </div>
+            
+            <div class="lesson-card" onclick="startLesson(4)">
+                <div class="lesson-icon">♘</div>
+                <h3>Lição 4: Cavalos e Rainhas</h3>
+                <p>Movimentos em L e movimentos livres</p>
+            </div>
+            
+            <div class="lesson-card" onclick="startLesson(5)">
+                <div class="lesson-icon">♔</div>
+                <h3>Lição 5: Rei e Xeque-mate</h3>
+                <p>Proteja seu rei e vença o jogo</p>
             </div>
         </div>
-    </section>
-    
-    <section style="background-color: var(--light);">
-        <div class="container">
-            <h2>Funcionalidades</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Interface Adaptada</h3>
-                    <ul class="feature-list">
-                        <li>Pouco ou nenhum texto</li>
-                        <li>Navegação apenas com mouse</li>
-                        <li>Ícones intuitivos</li>
-                        <li>Criança de 8 anos consegue usar sem instruções</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3>Conteúdo Educativo</h3>
-                    <ul class="feature-list">
-                        <li>Movimentação das peças</li>
-                        <li>Objetivos do jogo</li>
-                        <li>Xeque-mate básico</li>
-                        <li>Sistema de progressão</li>
-                        <li>Biblioteca de puzzles</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3>Tecnologia</h3>
-                    <ul class="feature-list">
-                        <li>Funciona offline</li>
-                        <li>Compatível com hardware antigo</li>
-                        <li>Baixo consumo de recursos</li>
-                        <li>Interface responsiva</li>
-                    </ul>
-                </div>
+
+        <!-- Lição 1: Tabuleiro -->
+        <div id="lesson1" class="lesson-content hidden">
+            <h2>♙ Lição 1: Conhecendo o Tabuleiro</h2>
+            
+            <div class="instruction">
+                <h3>O Tabuleiro de Xadrez</h3>
+                <p>O tabuleiro tem 64 casas, alternando entre claras e escuras.</p>
+                <p><strong>Regra importante:</strong> A casa no canto inferior direito deve ser CLARA!</p>
+            </div>
+            
+            <div class="chess-board" id="board1"></div>
+            
+            <div class="instruction">
+                <h3>Coordenadas do Tabuleiro</h3>
+                <p>As colunas são letras de A a H</p>
+                <p>As linhas são números de 1 a 8</p>
+                <p>Exemplo: A1, B2, C3, etc.</p>
+            </div>
+            
+            <div class="lesson-navigation">
+                <button class="btn" onclick="showLessonSelector()">Voltar às Lições</button>
+                <button class="btn" onclick="startLesson(2)">Próxima Lição →</button>
             </div>
         </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <h2>Cronograma do Projeto</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Mês 1</div>
-                    <div class="card">
-                        <h3>Pesquisa e Imersão</h3>
-                        <p>Diagnóstico participativo com 80% das crianças e educadores, análise da infraestrutura técnica e documentação de requisitos.</p>
-                    </div>
+
+        <!-- Lição 2: Peões -->
+        <div id="lesson2" class="lesson-content hidden">
+            <h2>♟️ Lição 2: Movimento dos Peões</h2>
+            
+            <div class="instruction">
+                <h3>Como os Peões se Movem</h3>
+                <p>• Os peões se movem para FRENTE</p>
+                <p>• Na primeira jogada, podem avançar 1 ou 2 casas</p>
+                <p>• Depois da primeira jogada, só 1 casa por vez</p>
+                <p>• Capturam na DIAGONAL</p>
+            </div>
+            
+            <div class="boards-container">
+                <div>
+                    <h4>Movimento Normal</h4>
+                    <div class="chess-board example-board" id="board2a"></div>
                 </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Mês 2</div>
-                    <div class="card">
-                        <h3>Design e Desenvolvimento</h3>
-                        <p>Criação do protótipo navegável com 100% dos módulos básicos, design de interface e desenvolvimento do MVP.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Mês 3</div>
-                    <div class="card">
-                        <h3>Testes e Validação</h3>
-                        <p>Testes de usabilidade com crianças e educadores, correção de defeitos e validação com stakeholders.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Final do Semestre</div>
-                    <div class="card">
-                        <h3>Implantação</h3>
-                        <p>Instalação nos equipamentos do orfanato, capacitação dos educadores e início do uso regular.</p>
-                    </div>
+                <div>
+                    <h4>Captura</h4>
+                    <div class="chess-board example-board" id="board2b"></div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section style="background-color: var(--light);">
-        <div class="container">
-            <h2>Equipe</h2>
-            <div class="grid">
-                <div class="team-member">
-                    <div class="card">
-                        <h3>Felipe Seiji Namiyama Nishina</h3>
-                        <p>Gerente do Projeto</p>
-                        <p>11231103739</p>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="card">
-                        <h3>Avraham Ben Aram de Souza</h3>
-                        <p>Desenvolvedor</p>
-                        <p>11231103362</p>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="card">
-                        <h3>Gabriel Yukio Yamaguti Minato</h3>
-                        <p>Desenvolvedor</p>
-                        <p>11231100828</p>
-                    </div>
-                </div>
-                
-                <div class="team-member">
-                    <div class="card">
-                        <h3>Miguel Santana da Costa</h3>
-                        <p>Desenvolvedor</p>
-                        <p>11232100858</p>
-                    </div>
-                </div>
+            
+            <div class="lesson-navigation">
+                <button class="btn" onclick="startLesson(1)">← Lição Anterior</button>
+                <button class="btn" onclick="showLessonSelector()">Voltar às Lições</button>
+                <button class="btn" onclick="startLesson(3)">Próxima Lição →</button>
             </div>
         </div>
-    </section>
-    
-    <section id="contato">
-        <div class="container">
-            <h2>Contato</h2>
-            <div class="card">
-                <p>Este projeto é uma iniciativa da Universidade de Mogi das Cruzes em parceria com o Lar Batista.</p>
-                <p>Para mais informações sobre o projeto ou possíveis parcerias, entre em contato conosco.</p>
-                <div style="margin-top: 1.5rem;">
-                    <a href="mailto:contato@exemplo.com" class="btn">Enviar E-mail</a>
-                </div>
+
+        <!-- Lição 3: Torres e Bispos -->
+        <div id="lesson3" class="lesson-content hidden">
+            <h2>♖ Lição 3: Torres e Bispos</h2>
+            
+            <div class="instruction">
+                <h3>Torres (♖ ♜)</h3>
+                <p>• Movem-se em LINHA RETA</p>
+                <p>• Horizontalmente e verticalmente</p>
+                <p>• Quantas casas quiser</p>
+            </div>
+            
+            <div class="chess-board" id="board3a"></div>
+            
+            <div class="instruction">
+                <h3>Bispos (♗ ♝)</h3>
+                <p>• Movem-se na DIAGONAL</p>
+                <p>• Quantas casas quiser</p>
+                <p>• Cada bispo fica sempre na mesma cor</p>
+            </div>
+            
+            <div class="chess-board" id="board3b"></div>
+            
+            <div class="lesson-navigation">
+                <button class="btn" onclick="startLesson(2)">← Lição Anterior</button>
+                <button class="btn" onclick="showLessonSelector()">Voltar às Lições</button>
+                <button class="btn" onclick="startLesson(4)">Próxima Lição →</button>
             </div>
         </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <p>Xadrez Educativo Digital - Lar Batista</p>
-            <p>Projeto de Engenharia de Software - Universidade de Mogi das Cruzes</p>
-            <p>2025</p>
+
+        <!-- Lição 4: Cavalos e Rainhas -->
+        <div id="lesson4" class="lesson-content hidden">
+            <h2>♘ Lição 4: Cavalos e Rainhas</h2>
+            
+            <div class="instruction">
+                <h3>Cavalos (♘ ♞)</h3>
+                <p>• Movem-se em "L"</p>
+                <p>• Duas casas em uma direção + uma casa perpendicular</p>
+                <p>• Única peça que pode pular sobre outras</p>
+            </div>
+            
+            <div class="chess-board" id="board4a"></div>
+            
+            <div class="instruction">
+                <h3>Rainhas (♕ ♛)</h3>
+                <p>• A peça mais poderosa!</p>
+                <p>• Movem-se como Torre + Bispo</p>
+                <p>• Horizontal, vertical e diagonal</p>
+                <p>• Quantas casas quiser</p>
+            </div>
+            
+            <div class="chess-board" id="board4b"></div>
+            
+            <div class="lesson-navigation">
+                <button class="btn" onclick="startLesson(3)">← Lição Anterior</button>
+                <button class="btn" onclick="showLessonSelector()">Voltar às Lições</button>
+                <button class="btn" onclick="startLesson(5)">Próxima Lição →</button>
+            </div>
         </div>
-    </footer>
+
+        <!-- Lição 5: Rei e Xeque-mate -->
+        <div id="lesson5" class="lesson-content hidden">
+            <h2>♔ Lição 5: Rei e Xeque-mate</h2>
+            
+            <div class="instruction">
+                <h3>Rei (♔ ♚)</h3>
+                <p>• Movem-se 1 casa em qualquer direção</p>
+                <p>• Não pode se colocar em perigo</p>
+                <p>• O objetivo é proteger o rei</p>
+            </div>
+            
+            <div class="chess-board" id="board5a"></div>
+            
+            <div class="instruction">
+                <h3>Xeque e Xeque-mate</h3>
+                <p>• <strong>Xeque:</strong> Rei está sob ataque</p>
+                <p>• <strong>Xeque-mate:</strong> Rei está em xeque e não pode escapar</p>
+                <p>• <strong>Fim do jogo!</strong> Quem dá xeque-mate vence</p>
+            </div>
+            
+            <div class="chess-board" id="board5b"></div>
+            
+            <div class="instruction">
+                <h3>🎉 Parabéns!</h3>
+                <p>Você completou todas as lições básicas de xadrez!</p>
+                <p>Agora está pronto para jogar uma partida completa!</p>
+            </div>
+            
+            <div class="lesson-navigation">
+                <button class="btn" onclick="startLesson(4)">← Lição Anterior</button>
+                <button class="btn" onclick="showLessonSelector()">Voltar às Lições</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configurações das lições
+        const lessonConfigs = {
+            1: { // Tabuleiro
+                boards: ['board1'],
+                setup: function() {
+                    generateEmptyBoard('board1', true);
+                }
+            },
+            2: { // Peões
+                boards: ['board2a', 'board2b'],
+                setup: function() {
+                    // Movimento normal
+                    generateBoard('board2a', {
+                        2: {5: '♙'},
+                        3: {5: '○'}
+                    });
+                    
+                    // Captura
+                    generateBoard('board2b', {
+                        2: {5: '♙'},
+                        3: {4: '♟', 6: '♟'},
+                        3: {4: '○', 5: '○', 6: '○'}
+                    });
+                }
+            },
+            3: { // Torres e Bispos
+                boards: ['board3a', 'board3b'],
+                setup: function() {
+                    // Torre
+                    generateBoard('board3a', {
+                        4: {4: '♖'},
+                        1: {4: '○'}, 2: {4: '○'}, 3: {4: '○'}, 5: {4: '○'}, 6: {4: '○'}, 7: {4: '○'}, 8: {4: '○'},
+                        4: {1: '○'}, 4: {2: '○'}, 4: {3: '○'}, 4: {5: '○'}, 4: {6: '○'}, 4: {7: '○'}, 4: {8: '○'}
+                    });
+                    
+                    // Bispo
+                    generateBoard('board3b', {
+                        4: {4: '♗'},
+                        1: {1: '○'}, 2: {2: '○'}, 3: {3: '○'}, 5: {5: '○'}, 6: {6: '○'}, 7: {7: '○'}, 8: {8: '○'},
+                        1: {7: '○'}, 2: {6: '○'}, 3: {5: '○'}, 5: {3: '○'}, 6: {2: '○'}, 7: {1: '○'}
+                    });
+                }
+            },
+            4: { // Cavalos e Rainhas
+                boards: ['board4a', 'board4b'],
+                setup: function() {
+                    // Cavalo
+                    generateBoard('board4a', {
+                        4: {4: '♘'},
+                        2: {3: '○'}, 2: {5: '○'}, 3: {2: '○'}, 3: {6: '○'},
+                        5: {2: '○'}, 5: {6: '○'}, 6: {3: '○'}, 6: {5: '○'}
+                    });
+                    
+                    // Rainha
+                    generateBoard('board4b', {
+                        4: {4: '♕'},
+                        // Horizontal e vertical
+                        1: {4: '○'}, 2: {4: '○'}, 3: {4: '○'}, 5: {4: '○'}, 6: {4: '○'}, 7: {4: '○'}, 8: {4: '○'},
+                        4: {1: '○'}, 4: {2: '○'}, 4: {3: '○'}, 4: {5: '○'}, 4: {6: '○'}, 4: {7: '○'}, 4: {8: '○'},
+                        // Diagonal
+                        1: {1: '○'}, 2: {2: '○'}, 3: {3: '○'}, 5: {5: '○'}, 6: {6: '○'}, 7: {7: '○'}, 8: {8: '○'},
+                        1: {7: '○'}, 2: {6: '○'}, 3: {5: '○'}, 5: {3: '○'}, 6: {2: '○'}, 7: {1: '○'}
+                    });
+                }
+            },
+            5: { // Rei e Xeque-mate
+                boards: ['board5a', 'board5b'],
+                setup: function() {
+                    // Movimento do rei
+                    generateBoard('board5a', {
+                        4: {4: '♔'},
+                        3: {3: '○'}, 3: {4: '○'}, 3: {5: '○'},
+                        4: {3: '○'}, 4: {5: '○'},
+                        5: {3: '○'}, 5: {4: '○'}, 5: {5: '○'}
+                    });
+                    
+                    // Xeque-mate exemplo
+                    generateBoard('board5b', {
+                        8: {5: '♚'}, // Rei preto
+                        6: {5: '♕'}, // Rainha branca
+                        6: {7: '♖'}, // Torre branca
+                        7: {8: '♗'}  // Bispo branco
+                    });
+                }
+            }
+        };
+
+        function generateEmptyBoard(boardId, showCoordinates = false) {
+            const board = document.getElementById(boardId);
+            board.innerHTML = '';
+            
+            for (let row = 8; row >= 1; row--) {
+                for (let col = 1; col <= 8; col++) {
+                    const square = document.createElement('div');
+                    square.className = `square ${(row + col) % 2 === 0 ? 'white' : 'black'}`;
+                    
+                    if (showCoordinates && (row === 1 || col === 1)) {
+                        const coordinate = document.createElement('div');
+                        coordinate.style.fontSize = '12px';
+                        coordinate.style.position = 'absolute';
+                        coordinate.style.color = (row + col) % 2 === 0 ? '#000' : '#fff';
+                        
+                        if (row === 1) {
+                            coordinate.textContent = String.fromCharCode(96 + col);
+                            coordinate.style.bottom = '2px';
+                            coordinate.style.right = '2px';
+                        }
+                        if (col === 1) {
+                            coordinate.textContent = row;
+                            coordinate.style.top = '2px';
+                            coordinate.style.left = '2px';
+                        }
+                        
+                        square.style.position = 'relative';
+                        square.appendChild(coordinate);
+                    }
+                    
+                    board.appendChild(square);
+                }
+            }
+        }
+
+        function generateBoard(boardId, pieceSetup) {
+            const board = document.getElementById(boardId);
+            board.innerHTML = '';
+            
+            for (let row = 8; row >= 1; row--) {
+                for (let col = 1; col <= 8; col++) {
+                    const square = document.createElement('div');
+                    square.className = `square ${(row + col) % 2 === 0 ? 'white' : 'black'}`;
+                    
+                    // Verificar se há peça nesta posição
+                    if (pieceSetup[row] && pieceSetup[row][col]) {
+                        const content = pieceSetup[row][col];
+                        if (content === '○') {
+                            // Movimento possível
+                            square.classList.add('highlight');
+                            const dot = document.createElement('div');
+                            dot.className = 'movement-dot';
+                            square.appendChild(dot);
+                            square.style.position = 'relative';
+                        } else {
+                            // Peça normal
+                            square.innerHTML = `<span class="piece">${content}</span>`;
+                        }
+                    }
+                    
+                    board.appendChild(square);
+                }
+            }
+        }
+
+        function startLesson(lessonNumber) {
+            // Esconde seletor de lições
+            document.getElementById('lessonSelector').classList.add('hidden');
+            
+            // Esconde todas as lições
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('lesson' + i).classList.add('hidden');
+            }
+            
+            // Mostra a lição selecionada
+            document.getElementById('lesson' + lessonNumber).classList.remove('hidden');
+            
+            // Configura os tabuleiros da lição
+            if (lessonConfigs[lessonNumber]) {
+                lessonConfigs[lessonNumber].setup();
+            }
+        }
+
+        function showLessonSelector() {
+            // Esconde todas as lições
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('lesson' + i).classList.add('hidden');
+            }
+            
+            // Mostra seletor
+            document.getElementById('lessonSelector').classList.remove('hidden');
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configura lição inicial se necessário
+        });
+    </script>
 </body>
 </html>
