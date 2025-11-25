@@ -5,7 +5,7 @@ Projeto de extensão universitária desenvolvido para o Lar Batista em Mogi das 
 
 🎯 **Objetivo Principal:** Promover o desenvolvimento cognitivo e lógico de jovens em situação de acolhimento através do aprendizado de xadrez.
 
----
+--------------------------------------------------------------------
 
 ## ✨ Características do Projeto
 
@@ -16,7 +16,7 @@ Projeto de extensão universitária desenvolvido para o Lar Batista em Mogi das 
 - 🎨 Interface Simples: Navegação apenas com mouse, poucos textos  
 - 💰 Zero Custo: Solução gratuita para a instituição  
 
----
+--------------------------------------------------------------------
 
 ## 🎓 Lições Disponíveis
 
@@ -46,7 +46,7 @@ Projeto de extensão universitária desenvolvido para o Lar Batista em Mogi das 
 - Xeque-mate e fim do jogo  
 
 ---
-
+-------------------------------------------------------------------------------
 ## 🚀 Como Executar o Projeto
 
 ### Execução Local (Recomendado)
@@ -118,7 +118,7 @@ Offline: Funciona completamente sem internet
 - Habilidades: Não requer alfabetização completa
 
 - Experiência: Primeiro contato com xadrez
-
+---------------------------------------------------------------------------
 ## **🤝 Equipe de Desenvolvimento**
 ### ***Nome	Função	RA***
 - *Felipe Seiji Namiyama Nishina	Gerente do Projeto	11231103739*
@@ -130,7 +130,7 @@ Orientador: Prof. Renato Mauro Richter
 Instituição: Universidade de Mogi das Cruzes
 Disciplina: Engenharia de Software
 Período: 6º Semestre - 2025
-
+--------------------------------------------------------------------------
 ## **📊 Requisitos Técnicos**
 ### Mínimos
 - Navegador: Qualquer navegador moderno
@@ -162,7 +162,7 @@ Período: 6º Semestre - 2025
 - Estrutura modular
 
 - Fácil customização
-
+----------------------------------------------------------------------------------------
 ## **🌟 Benefícios Educacionais**
 - 🧠 Desenvolvimento Cognitivo: Raciocínio lógico e estratégico
 
@@ -173,7 +173,7 @@ Período: 6º Semestre - 2025
 - 😊 Autoestima: Progresso visível e conquistas
 
 - 🤝 Socialização: Aprendizado colaborativo
-
+------------------------------------------------------------------------------------------
 ### *📞 Suporte e Contato*
 Em caso de dúvidas ou problemas técnicos, entre em contato com a equipe de desenvolvimento através da Universidade de Mogi das Cruzes.
 
