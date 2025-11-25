@@ -120,7 +120,7 @@ Offline: Funciona completamente sem internet
 - Experiência: Primeiro contato com xadrez
 
 ## **🤝 Equipe de Desenvolvimento**
-Nome	Função	RA
+### ***Nome	Função	RA***
 - *Felipe Seiji Namiyama Nishina	Gerente do Projeto	11231103739*
 - *Avraham Ben Aram de Souza	Desenvolvedor	11231103362*
 - *Gabriel Yukio Yamaguti Minato	Desenvolvedor	11231100828*
